@@ -15,8 +15,7 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
 
     # User authentication information (required for Flask-User)
-    email = db.Column(db.Unicode(255), nullable=False, server_default=u'', unique=True)
-    confirmed_at = db.Column(db.DateTime())
+    username = db.Column(db.Unicode(50), nullable=False, server_default=u'', unique=True)
     password = db.Column(db.String(255), nullable=False, server_default='')
     # reset_password_token = db.Column(db.String(100), nullable=False, server_default='')
     active = db.Column(db.Boolean(), nullable=False, server_default='0')
