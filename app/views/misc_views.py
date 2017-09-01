@@ -9,6 +9,7 @@ from flask_user import current_user, login_required, roles_accepted
 
 from app.application import app, db
 from app.models.user_models import UserProfileForm
+from app.models.app_models import Cliente
 
 # The Home page is accessible to anyone
 @app.route('/')
@@ -28,6 +29,11 @@ def user_page():
 @roles_accepted('admin')  # Limits access to users with the 'admin' role
 def admin_page():
     return render_template('pages/admin_page.html')
+
+@app.route('/contactos')
+@login_required
+def contactos_page():
+    return render_template('pages/contactos.html', contactos=Cliente.query.all())
 
 
 @app.route('/pages/profile', methods=['GET', 'POST'])
@@ -52,3 +58,15 @@ def user_profile_page():
                            form=form)
 
 
+@app.route('/contactos/<id_contacto>')
+@login_required
+def contacto_detail_page(id_contacto):
+    
+    contacto = Cliente.query.filter(Cliente.id == id_contacto).all()
+    print(contacto)
+
+    if contacto:
+        datos = contacto[0]
+    else:
+        datos = None
+    return render_template('pages/contacto_detail.html',contacto=datos)

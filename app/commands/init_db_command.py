@@ -8,18 +8,19 @@ import datetime
 
 from app.application import app, db
 from app.models.user_models import User, Role
+from app.models.app_models import Cliente
 
 # @manager.command
 def init_db():
     """ Initialize the database."""
+    # Create all tables
+    db.create_all()
+
     create_users()
 
 
 def create_users():
     """ Create users """
-
-    # Create all tables
-    db.create_all()
 
     # Adding roles
     admin_role = find_or_create_role('admin', u'Admin')
@@ -30,7 +31,6 @@ def create_users():
 
     # Save to DB
     db.session.commit()
-
 
 def find_or_create_role(name, label):
     """ Find existing role or create new role """

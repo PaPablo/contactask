@@ -1,0 +1,20 @@
+{% extends "common/page_base.html" %}  {# common/page_base.html extends layout.html #}
+
+{% block content %}
+<h1>Contactos</h1>
+
+<p>Aquí va la tablita</p>
+<table>
+    <tr>
+        <th>Nombre</th>
+        <th>Apellido</th>
+    </tr>
+{% for c in contactos %}
+    <tr>
+        <td>{{ c.nombre }}</td>
+        <td>{{ c.apellido }}</td>
+        <td><a href="{{ url_for('contacto_detail_page',id_contacto=c.id) }}">ver</a></td>
+    </tr>
+{% endfor %}
+</table>
+{% endblock %}

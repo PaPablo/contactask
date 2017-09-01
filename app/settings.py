@@ -5,7 +5,7 @@
 import os
 
 # Application settings
-APP_NAME = "Flask-User starter app"
+APP_NAME = "AgendAT"
 APP_SYSTEM_ERROR_SUBJECT_LINE = APP_NAME + " system error"
 
 # Flask settings
@@ -17,7 +17,7 @@ SQLALCHEMY_TRACK_MODIFICATIONS = False
 # Flask-User settings
 USER_APP_NAME = APP_NAME
 USER_ENABLE_CHANGE_PASSWORD = True  # Allow users to change their password
-USER_ENABLE_CHANGE_USERNAME = False  # Allow users to change their username
+USER_ENABLE_CHANGE_USERNAME = True  # Allow users to change their username
 USER_ENABLE_CONFIRM_EMAIL = False  # Force users to confirm their email
 USER_ENABLE_FORGOT_PASSWORD = True  # Allow users to reset their passwords
 USER_ENABLE_EMAIL = False  # Register with Email
