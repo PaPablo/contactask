@@ -1,20 +1,58 @@
 {% extends "common/page_base.html" %}  {# common/page_base.html extends layout.html #}
 
 {% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-xs-2"></div>
+        <div class="col-xs-8">
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    {% from "common/form_macros.html" import render_field, render_submit_field %}
+                    <form action="" method="POST" class="form" role="form">
+                    <div class="row">
+                        <div class="col-sm-6 col-md-5 col-lg-4">
+                        {{ form.hidden_tag() }}
+
+                        {{ render_field(form.nombre, tabindex=240) }}
+
+                        {{ render_submit_field(form.submit, tabindex=280) }}
+                        </div>
+                    </div>
+                    </form>
+                </div>
+
+            </div>
+
+
+            <div class="panel panel-default">
+                {% if busqueda%}
+                <div class="panel-heading">Resultados para: {{ busqueda }} | Cantidad: {{ cantidad }}</div>
+                {% endif %}
+                    {% if contactos %}
+                        <table class="table">
+                            <tr>
+                                <th>Nombre</th>
+                            </tr>
+                                {% for c in contactos %}
+                                    <tr>
+                                        <td>{{ c.nombre }}</td>
+                                        <td> 
+                                                <a class="glyphicon glyphicon-zoom-in btn btn-default"  href="{{ url_for('contacto_detail_page', id_contacto=c.cod_prov) }}"></a>
+                                        </td>
+
+                                    </tr>
+                                {% endfor %}
+                        </table>
+                    {% else %}
+                    {% endif %}
+            </div>
+
+        </div>
+        <div class="col-xs-2"></div>
+    </div>
+</div>
 <h1>Contactos</h1>
 
 <p>Aquí va la tablita</p>
-<table>
-    <tr>
-        <th>Nombre</th>
-        <th>Apellido</th>
-    </tr>
-{% for c in contactos %}
-    <tr>
-        <td>{{ c.nombre }}</td>
-        <td>{{ c.apellido }}</td>
-        <td><a href="{{ url_for('contacto_detail_page',id_contacto=c.id) }}">ver</a></td>
-    </tr>
-{% endfor %}
-</table>
 {% endblock %}
