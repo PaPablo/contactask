@@ -87,7 +87,7 @@ def contacto_detail_page(id_contacto):
     
     if query:
         contacto = query[0]
-        datos = [(m, getattr(contacto, m)) for m in attr]
+        datos = [(contacto.attr_order()[m], getattr(contacto, m)) for m in contacto.attr_order()]
     else:
         datos = None
     return render_template('pages/contacto_detail.html',contacto=contacto,datos=datos)
