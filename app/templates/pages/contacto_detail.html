@@ -5,9 +5,13 @@
 {% if contacto %}
     <div class="container">
         <div class="row">
-            <h2><div class="col-md-2"></div>
-            <div class="col-md-8"><p>{{ contacto.cod_prov }}</p> <p>{{ contacto.nombre }}</p></div>
-            <div class="col-md-2"></div></h2>
+
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <p><a href="{{ url_for('contactos_page') }}">Volver a buscar</a></p>
+                <h2><p>{{ contacto.cod_prov }}</p> <p>{{ contacto.nombre }}</p></h2>
+            </div>
+            <div class="col-md-2"></div>
         </div>
         <div class="row">
             <div class="col-md-2"></div>
@@ -18,7 +22,17 @@
                         {% for d in datos %}
                             <tr>
                                 <td>{{ d[0] }}</td>
-                                <td>{{ d[1] }}</td>
+                                {% if d[1] %}
+                                    {% if d[1] == True %}
+                                        <td><span class="glyphicon glyphicon-ok"></span></td>
+                                    {% elif d[1] == False %}
+                                        <td><span class="glyphicon glyphicon-remove"></span></td>
+                                    {% else %}
+                                        <td>{{ d[1] }}</td>
+                                    {% endif %} 
+                                {% else %}
+                                    <td><span class="glyphicon glyphicon-remove"></span></td>
+                                {% endif %}
                             </tr> 
                         {% endfor %} 
 

@@ -40,7 +40,18 @@
         </div>
         <div class="with-margins">
             <a href="{{ url_for('home_page') }}">Home</a>
-            &nbsp; | &nbsp; <a href="{{ url_for('admin_page') }}">Usuario</a>
+            &nbsp; | &nbsp; 
+
+            {% if current_user.roles %}
+                {% for r in current_user.roles %}
+                    {% if r.name == 'admin' %}
+                        <a href="{{ url_for('admin_page')}}">Perfil</a>
+                    {% endif %}
+                {% endfor %}
+            {% else %}
+                <a href="{{ url_for('user_page') }}">Perfil</a>
+            {% endif %}
+            
             &nbsp; | &nbsp; <a href="{{ url_for('contactos_page') }}">Contactos</a>
         </div>
         <hr class="no-margins"/>
@@ -70,8 +81,8 @@
         <br/>
         <hr class="no-margins"/>
         <div id="footer-div" class="clearfix with-margins">
-            <div class="pull-left">{{ user_manager.app_name }} v1.0</div>
-            <div class="pull-right">&copy; 2014 MyCorp</div>
+            <div class="pull-left">{{ user_manager.app_name }} v0.01</div>
+            <div class="pull-right">&copy; 2017 <a href="https://github.com/papablo">PaPablo</a></div>
         </div>
 
         <!-- Bootstrap JS -->

@@ -38,16 +38,11 @@ class Cliente(db.Model):
     nombre2 = db.Column(db.String(13))
 
     def attr_order(self):
-        return {'nro_cuit':'NRO CUIT', 'cat_contri':'Categoría', 'telefono':'Telefono',
-                'domicilio':'Domicilio', 'localidad':'Localidad','cod_post':'Código Postal',
-                'email': 'E-Mail', 'observaciones':'Observaciones', 'es_proveedor':'Es Proveedor?', 'es_cliente':'Es Cliente?',
-                'saldo_actual':'Saldo Actual'}
-
-    def __iter__(self):
-        for attr, value in  self.__dict__.items():
-            yield attr, value
-
-
+        return zip(
+                    ['nro_cuit', 'cat_contri', 'telefono', 'domicilio', 'localidad', 
+                    'cod_post', 'email', 'observaciones', 'es_proveedor', 'es_cliente'],
+                    ['NRO CUIT', 'Categoría', 'Teléfono', 'Domicilio','Localidad', 
+                    'Código Postal', 'E-Mail', 'Observaciones', 'Es Proveedor?', 'Es Cliente'])
 
 
 # Define the Client search form
