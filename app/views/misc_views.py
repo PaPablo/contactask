@@ -45,9 +45,8 @@ def contactos_page():
     if request.method == 'POST' and form.validate():
         form.populate_obj(current_user)
         buscar='%' + form.nombre.data.lower() +'%'
-        resultados = Contacto.query.filter(Contacto.nombre.like(buscar) ).all()
+        resultados = Contacto.query.filter(Contacto.nombre.ilike(buscar) ).all()
         cantidad = len(resultados)
-        print(buscar, resultados)
     # GET o invalid input
     return render_template('pages/contactos.html', 
                                 form=form, 
@@ -84,15 +83,13 @@ def user_profile_page():
 @login_required
 def contacto_detail_page(id_contacto):
     
-    attr = set([a for a in dir(Contacto) if not a.startswith('_') and not callable(getattr(Contacto,a))]) - {'cod_client','cod_prov', 'query' }
-    query = Contacto.query.filter(Contacto.cod_prov == id_contacto).all()
+    query = Contacto.query.filter(Contacto.id == id_contacto).all()
     
     if query:
         contacto = query[0] 
-        datos = [(m[1], getattr(contacto, m[0])) for m in contacto.attr_order()]
     else:
         datos = None
-    return render_template('pages/contacto_detail.html',contacto=contacto,datos=datos)
+    return render_template('pages/contacto_detail.html',contacto=contacto)
 
 @app.route('/contacto/crear')
 @login_required

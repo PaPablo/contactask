@@ -12,7 +12,6 @@ class Contacto(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(150), nullable=False)
     apellido = db.Column(db.String(150), nullable=False)
-    telefono = db.Column(db.String(30))
     domicilio = db.Column(db.String(120))
 
 

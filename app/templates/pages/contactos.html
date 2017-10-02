@@ -33,12 +33,14 @@
                         <table class="table">
                             <tr>
                                 <th>Nombre</th>
+                                <th>Apellido</th>
                             </tr>
                                 {% for c in contactos %}
                                     <tr>
                                         <td>{{ c.nombre }}</td>
+                                        <td>{{ c.apellido }}</td>
                                         <td> 
-                                                <a class="glyphicon glyphicon-zoom-in btn btn-default"  href="{{ url_for('contacto_detail_page', id_contacto=c.cod_prov) }}"></a>
+                                                <a class="glyphicon glyphicon-zoom-in btn btn-default"  href="{{ url_for('contacto_detail_page', id_contacto=c.id) }}"></a>
                                         </td>
 
                                     </tr>

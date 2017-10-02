@@ -1,6 +1,9 @@
 # This file is used by pip to install required python packages
 # Usage: pip install -r requirements.txt
 
+# Postgres
+psycopg2
+
 # Flask Framework
 Flask==0.12
 
