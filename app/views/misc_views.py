@@ -7,10 +7,12 @@ from flask import redirect, render_template
 from flask import request, url_for
 from flask_user import current_user, login_required, roles_accepted
 
+from flask.ext.wtf import Form
+from wtforms.ext.sqlalchemy.orm import model_form
 from sqlalchemy import func
 from app.application import app, db
 from app.models.user_models import UserProfileForm
-from app.models.app_models import Cliente, ClienteSearchForm
+from app.models.app_models import Contacto, ContactoSearchForm
 
 # The Home page is accessible to anyone
 @app.route('/')
@@ -35,7 +37,7 @@ def admin_page():
 @login_required
 def contactos_page():
 
-    form = ClienteSearchForm(request.form, current_user)
+    form = ContactoSearchForm(request.form, current_user)
     resultados = None
     busqueda=None
     cantidad=None
@@ -43,7 +45,7 @@ def contactos_page():
     if request.method == 'POST' and form.validate():
         form.populate_obj(current_user)
         buscar='%' + form.nombre.data.lower() +'%'
-        resultados = Cliente.query.filter(Cliente.nombre.like(buscar) ).all()
+        resultados = Contacto.query.filter(Contacto.nombre.like(buscar) ).all()
         cantidad = len(resultados)
         print(buscar, resultados)
     # GET o invalid input
@@ -82,16 +84,22 @@ def user_profile_page():
 @login_required
 def contacto_detail_page(id_contacto):
     
-    attr = set([a for a in dir(Cliente) if not a.startswith('_') and not callable(getattr(Cliente,a))]) - {'cod_client','cod_prov', 'query' }
-    query = Cliente.query.filter(Cliente.cod_prov == id_contacto).all()
+    attr = set([a for a in dir(Contacto) if not a.startswith('_') and not callable(getattr(Contacto,a))]) - {'cod_client','cod_prov', 'query' }
+    query = Contacto.query.filter(Contacto.cod_prov == id_contacto).all()
     
     if query:
-        contacto = query[0]
+        contacto = query[0] 
         datos = [(m[1], getattr(contacto, m[0])) for m in contacto.attr_order()]
     else:
         datos = None
     return render_template('pages/contacto_detail.html',contacto=contacto,datos=datos)
 
-@app.route('contacto/crear')
+@app.route('/contacto/crear')
 @login_required
 def contacto_crear():
+    CreateFormContacto = model_form(Contacto, Form)
+    form = CreateFormContacto(request.form, None)
+
+    print(form)
+
+    return render_template("pages/contacto_crear.html", form=form) 

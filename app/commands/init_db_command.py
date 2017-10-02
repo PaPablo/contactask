@@ -8,7 +8,7 @@ import datetime
 
 from app.application import app, db
 from app.models.user_models import User, Role
-from app.models.app_models import Cliente
+from app.models.app_models import Contacto
 
 # @manager.command
 def init_db():

@@ -5,7 +5,7 @@
 import os
 
 # Application settings
-APP_NAME = "AgendAT"
+APP_NAME = "Contactask"
 APP_SYSTEM_ERROR_SUBJECT_LINE = APP_NAME + " system error"
 
 # Flask settings
