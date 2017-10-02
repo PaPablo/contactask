@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- These 3 meta tags MUST come first -->
         <link rel="shortcut icon" type="image/png" href="./templates/favicon.ico">
-        <title>AgendAT</title>
+        <title>{{ user_manager.app_name }}</title>
 
         <!-- Bootstrap CSS and JS -->
         <!-- Latest compiled and minified CSS -->
@@ -52,8 +52,8 @@
                 <a href="{{ url_for('user_page') }}">Perfil</a>
             {% endif %}
             
-            &nbsp; | &nbsp; <a href="{{ url_for('contactos_page') }}">Contactos</a>
-            &nbsp; | &nbsp; <a href="{{ url_for('contactos_page') }}">Contactos</a>
+            &nbsp; | &nbsp; <a href="{{ url_for('contactos_page') }}">Ver Contactos</a>
+            &nbsp; | &nbsp; <a href="{{ url_for('contacto_crear') }}">Crera Contacto</a>
         </div>
         <hr class="no-margins"/>
 

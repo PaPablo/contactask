@@ -1,0 +1,51 @@
+{% extends "common/page_base.html" %}  {# common/page_base.html extends layout.html #}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+
+        <div class="panel panel-default">
+            <div class="panel-body">
+                {% from "common/form_macros.html" import render_field, render_submit_field %}
+                <form action="" method="POST" class="form" role="form">
+                <div class="row">
+                    <div class="col-sm-6 col-md-5 col-lg-4">
+                        {{ render_field(form.nombre, tabindex=240) }}
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="panel panel-default">
+                <table class="table">
+
+                    {% for d in datos %}
+                        <tr>
+                            <td>{{ d[0] }}</td>
+                            {% if d[1] %}
+                                {% if d[1] == True %}
+                                    <td><span class="glyphicon glyphicon-ok"></span></td>
+                                {% elif d[1] == False %}
+                                    <td><span class="glyphicon glyphicon-remove"></span></td>
+                                {% else %}
+                                    <td>{{ d[1] }}</td>
+                                {% endif %} 
+                            {% else %}
+                                <td><span class="glyphicon glyphicon-remove"></span></td>
+                            {% endif %}
+                        </tr> 
+                    {% endfor %} 
+
+                </table>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
+
+{% endblock %}

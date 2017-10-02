@@ -1,9 +1,9 @@
 {% extends "common/page_base.html" %}  {# common/page_base.html extends layout.html #}
 
 {% block content %}
-<h1>AgendAT</h1>
+<h1>{{ user_manager.app_name }}</h1>
 
-<p>Agenda de contactos - AT informática</p>
+<p>Agenda de contactos</p>
 
 {% if not current_user.is_authenticated %}
 <p>Iniciar sesión para poder disfrutar del poder</p>
