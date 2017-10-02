@@ -91,3 +91,7 @@ def contacto_detail_page(id_contacto):
     else:
         datos = None
     return render_template('pages/contacto_detail.html',contacto=contacto,datos=datos)
+
+@app.route('contacto/crear')
+@login_required
+def contacto_crear():
