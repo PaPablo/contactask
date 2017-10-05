@@ -67,6 +67,8 @@ def init_app(extra_config_settings={}):
                                user_profile_view_function=user_profile_page,
     )
 
+    app.host = '0'
+
     return app
 
 
