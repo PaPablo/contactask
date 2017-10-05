@@ -82,7 +82,21 @@
         <br/>
         <hr class="no-margins"/>
         <div id="footer-div" class="clearfix with-margins">
-            <div class="pull-left">{{ user_manager.app_name }} v0.01</div>
+            <div class="pull-left"> 
+                <em>
+                    {{ user_manager.app_name }} v0.01
+                </em>
+                
+                <br/>
+                <a href="https://github.com/PaPablo/contactask" target="_blank" class="button-github">
+                    <img src="{{ url_for('static', filename='images/github.png') }}" alt="Contactask on GitHub" class="icon"/>GitHub
+                </a>
+                <br/>
+                <a href="https://hub.docker.com/r/lucianofromtrelew/contactask/" target="_blank" class="button-docker">
+                    <img src="{{ url_for('static', filename='images/docker.png') }}" alt="Contactask on DockerHub" class="icon"/>DockerHub
+                </a>    
+            </div>
+
             <div class="pull-right">&copy; 2017</div>
             <br/>
             <div class="pull-right"><a target="_blank" href="https://github.com/papablo">PaPablo</a></div>
