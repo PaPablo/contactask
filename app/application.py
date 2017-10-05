@@ -68,6 +68,7 @@ def init_app(extra_config_settings={}):
     )
 
     app.host = '0'
+    app.port = 5000
 
     return app
 
