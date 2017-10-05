@@ -2,9 +2,14 @@
 # General Python settings (from https://github.com/github/gitignore)
 #
 
+.vscode/
+.gitignore
+.pgdata
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
+
 
 # C extensions
 *.so
@@ -68,5 +73,4 @@ target/
 app.sqlite
 app/app.sqlite
 app/env_settings.py
-app/local_settings.py
 

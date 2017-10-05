@@ -7,10 +7,10 @@ services:
         ports:
             - "5434:5432"
         volumes:
-            - ./.pgdata:/var/lib/postgresql/data/
+             - ./.pgdata:/var/lib/postgresql/data/
     app:
-        restart: always
         image: lucianofromtrelew/contactask
+        restart: always
         ports:
             - "5000:5000"
         depends_on:
