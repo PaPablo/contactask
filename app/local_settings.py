@@ -14,6 +14,5 @@ DEBUG = True
 SECRET_KEY = '1a2s3d4f'
 
 # SQLAlchemy settings
-SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://postgres:postgres@db/contactask'
+SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://{0}:{1}@db/{2}'.format(os.environ["POSTGRES_USER"], os.environ["POSTGRES_PASSWORD"], os.environ["POSTGRES_DB"])
 SQLALCHEMY_TRACK_MODIFICATIONS = False    # Avoids a SQLAlchemy Warning
-

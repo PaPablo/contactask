@@ -5,7 +5,7 @@ from datetime import datetime
 import os
 
 from flask import Flask
-from flask_script import Manager
+from flask_script import Manager, Server
 from flask_sqlalchemy import SQLAlchemy
 from flask_mail import Mail
 from flask_migrate import Migrate, MigrateCommand
@@ -39,6 +39,7 @@ def init_app(extra_config_settings={}):
     # Setup Flask-Migrate
     migrate = Migrate(app, db)
     manager.add_command('db', MigrateCommand)
+    manager.add_command("runserver", Server(host="0.0.0.0", port=5000))
 
     # Setup Flask-Mail
     mail = Mail(app)
@@ -67,7 +68,7 @@ def init_app(extra_config_settings={}):
                                user_profile_view_function=user_profile_page,
     )
 
-    app.host = '0'
+    app.host = '0.0.0.0'
     app.port = 5000
 
     return app
