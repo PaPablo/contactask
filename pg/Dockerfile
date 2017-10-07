@@ -1,3 +1,5 @@
 FROM postgres
 
-COPY init_db.sh /docker-entrypoint-initdb.d
+WORKDIR /docker-entrypoint-initdb.d
+COPY contactask.sql .
+COPY init_db.sh .
