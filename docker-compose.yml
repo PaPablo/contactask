@@ -2,12 +2,16 @@ version: '3.1'
 
 services:
     db:
-        image: postgres
+        build: ./pg
         restart: always
         ports:
             - "5434:5432"
         volumes:
             - ./.pgdata:/var/lib/postgresql/data/
+        environment:
+            POSTGRES_PASSWORD: password
+            POSTGRES_DB: contactask
+
     app:
         image: lucianofromtrelew/contactask
         restart: always
