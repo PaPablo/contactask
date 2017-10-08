@@ -91,12 +91,3 @@ def contacto_detail_page(id_contacto):
         datos = None
     return render_template('pages/contacto_detail.html',contacto=contacto)
 
-@app.route('/contacto/crear')
-@login_required
-def contacto_crear():
-    CreateFormContacto = model_form(Contacto, Form)
-    form = CreateFormContacto(request.form, None)
-
-    print(form)
-
-    return render_template("pages/contacto_crear.html", form=form) 
